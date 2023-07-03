@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/e1629cd033.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body class="max-w-screen-xl mx-auto my-12">
+    <div>
+        <p class="text-3xl font-semibold mt-16 text-center mb-6">Products</p>
+        <hr/>
+        <div id="product-container" class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        </div>
+        <p class="text-3xl font-semibold mt-16 text-center mb-6">Cart</p>
+        <hr/>
+        <div class="w-full flex justify-center items-center">
+            <div class="border shadow-lg px-6 py-4 w-3/5 mx-auto mt-12">
+                <table class="table w-full mx-auto">
+                    <!-- head -->
+                    <thead>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </thead>
+                    <tbody id="cart-container" class="w-full space-x-4 text-center">
+
+                    </tbody>
+                  </table>
+                  <div id="bottom-total" class="text-right">
+                    <hr/>
+                    <span id="total" class="font-bold">Total: $0</span>
+                    <button id="clear-cart" class="bg-yellow-500 text-white px-4 py-1 mt-2 rounded-lg ml-2">Clear Cart</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/products.js" type="module"></script>
+<script src="/common.js"></script>
+<script src="/product-cards.js" type="module"></script>
+</html>
