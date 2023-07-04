@@ -2,7 +2,10 @@ import products from "./products.js";
 
 const container = document.getElementById("product-container");
 const cartContainer = document.getElementById("cart-container");
+
 let cart = [];
+
+//display product cards
 container.innerHTML = "";
 products.forEach((p) => {
   const { id, title, image, price } = p;
@@ -12,14 +15,23 @@ products.forEach((p) => {
         <img class="w-full h-full object-contain overflow-hidden" src=${image} alt="">
         </div>
         <div class="mt-2 px-4">
-            <h1>${title}</h1>
+            <h1 class="text-xl font-semibold">${title}</h1>
             <p>Price: ${"$" + price}</p>
-            <button data-id = ${id} class="buy-button bg-yellow-500 text-white px-4 py-1 mt-2 rounded-lg">Add to Cart</button>
+            <button data-id = ${id} class="buy-button bg-yellow-500 text-white px-4 py-1 mt-2 rounded-lg hover:bg-yellow-600">Add to Cart</button>
         </div>
     </div>
     `;
 });
 
+
+//add event listener to addtocart button
+container.addEventListener("click", (event) => {
+    if (event.target.classList.contains("buy-button")) {
+      handleBuy(event);
+    }
+  });
+
+//handle add to cart button event
 const handleBuy = (e) => {
   cartContainer.innerHTML = "";
   const title = e.target.parentNode.children[0].innerText;
@@ -42,18 +54,11 @@ const handleBuy = (e) => {
   displayCart(cart);
 };
 
-const bottomBar = document.getElementById("bottom-total");
-if (cart.length < 1) {
-  bottomBar.classList.add("hidden");
-} else {
-  bottomBar.classList.remove("hidden");
-}
 
-container.addEventListener("click", (event) => {
-  if (event.target.classList.contains("buy-button")) {
-    handleBuy(event);
-  }
-});
+//conditional bottom total and clear cart button 
+const bottomBar = document.getElementById("bottom-total");
+showBottomBar(bottomBar, cart)
+
 
 //plus quantity
 cartContainer.addEventListener("click", (event) => {
@@ -126,6 +131,7 @@ cartContainer.addEventListener("click", (event) => {
   }
 });
 
+//clearing the cart on clear-cart button event
 document.getElementById("clear-cart").addEventListener('click', function(){
     cart = [];
     displayTotal(cart);
